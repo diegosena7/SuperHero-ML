@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  app:
+    container_name: app-superhero
+    build: .
+    volumes:
+      - ./resultados:/app/resultados       # ✅ Mapeamento local para salvar arquivos
+    working_dir: /app                      # ✅ Garante que o script rode no diretório certo
+    command: ["python", "main.py"]         # ✅ Executa seu script principal
