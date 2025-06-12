@@ -6,8 +6,4 @@ Este projeto utiliza dados de super-heróis para treinar um modelo de classifica
 ## Como Executar com Docker
 
 1. Certifique-se de ter o Docker instalado.
-2. No terminal, navegue até a pasta onde está o projeto e execute:
-
-```bash
-docker build -t superheroes-ml .
-docker run superheroes-ml
+2. No terminal, navegue até a pasta onde está o projeto e execute: docker-compose up --build
