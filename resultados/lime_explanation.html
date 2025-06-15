@@ -37089,25 +37089,25 @@
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map </script></head><body>
-        <div class="lime top_div" id="top_div3IORP4EI9OBJIMY"></div>
+        <div class="lime top_div" id="top_divR39RFL2PADFH0VI"></div>
         
         <script>
-        var top_div = d3.select('#top_div3IORP4EI9OBJIMY').classed('lime top_div', true);
+        var top_div = d3.select('#top_divR39RFL2PADFH0VI').classed('lime top_div', true);
         
             var pp_div = top_div.append('div')
                                 .classed('lime predict_proba', true);
             var pp_svg = pp_div.append('svg').style('width', '100%');
-            var pp = new lime.PredictProba(pp_svg, ["Anti-Hero", "Hero", "Villain"], [0.11, 0.47, 0.42]);
+            var pp = new lime.PredictProba(pp_svg, ["Anti-Hero", "Hero", "Villain"], [0.19, 0.52, 0.29]);
             
         
         var exp_div;
             var exp = new lime.Explanation(["Anti-Hero", "Hero", "Villain"]);
         
                 exp_div = top_div.append('div').classed('lime explanation', true);
-                exp.show([["Intelligence > 0.83", 0.08737132104739899], ["Weapon_Claws <= -0.45", -0.05420451789112936], ["-0.11 < Strength <= 0.93", -0.04358645469807381], ["Weapon_Psychic > -0.32", -0.03449321382167977], ["Weapon_Hammer <= -0.41", -0.025233597773596367], ["Popularity Score <= -0.85", 0.021848039689856213], ["Universe_Marvel <= -1.00", -0.02166123364945224], ["Power Score > 0.86", -0.016849691562220208], ["Weapon_Sword <= -0.41", 0.015330511376187933], ["Weapon_Shield <= -0.41", -0.013700242102694417]], 1, exp_div);
+                exp.show([["Intelligence > 0.83", 0.08130406155758932], ["Power Score > 0.86", -0.05044163997179934], ["-0.11 < Strength <= 0.93", -0.03730687297583869], ["-0.09 < Combat Skill <= 0.93", -0.016867949249929327], ["Popularity Score <= -0.85", 0.01204296807260591], ["Speed <= -0.80", 0.0027948950751357482]], 1, exp_div);
                 
         var raw_div = top_div.append('div');
-            exp.show_raw_tabular([["Intelligence", "1.52", 0.08737132104739899], ["Weapon_Claws", "-0.45", -0.05420451789112936], ["Strength", "0.93", -0.04358645469807381], ["Weapon_Psychic", "3.12", -0.03449321382167977], ["Weapon_Hammer", "-0.41", -0.025233597773596367], ["Popularity Score", "-0.89", 0.021848039689856213], ["Universe_Marvel", "-1.00", -0.02166123364945224], ["Power Score", "1.51", -0.016849691562220208], ["Weapon_Sword", "-0.41", 0.015330511376187933], ["Weapon_Shield", "-0.41", -0.013700242102694417]], 1, raw_div);
+            exp.show_raw_tabular([["Intelligence", "1.52", 0.08130406155758932], ["Power Score", "1.51", -0.05044163997179934], ["Strength", "0.93", -0.03730687297583869], ["Combat Skill", "0.93", -0.016867949249929327], ["Popularity Score", "-0.89", 0.01204296807260591], ["Speed", "-0.80", 0.0027948950751357482]], 1, raw_div);
         
         </script>
         </body></html>

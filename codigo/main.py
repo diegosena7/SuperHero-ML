@@ -17,20 +17,45 @@ DATA_PATH = './dados/superhero_abilities_dataset.csv'
 df = pd.read_csv(DATA_PATH)
 
 # Seleção de colunas relevantes
-features = ['Strength', 'Speed', 'Intelligence', 'Combat Skill', 'Power Score', 'Popularity Score', 'Universe', 'Weapon']
 target = 'Alignment'
+df = df.dropna(subset=['Strength', 'Speed', 'Intelligence', 'Combat Skill', 'Power Score', 'Popularity Score', 'Universe', 'Weapon', 'Alignment'])
 
-df = df[features + [target]].dropna()
+# Análise exploratória e visualizações
+exploratory_dir = os.path.abspath("./resultados/exploratoria/")
+os.makedirs(exploratory_dir, exist_ok=True)
+
+# Estatísticas descritivas
+#print("Estatísticas descritivas:\n", df.describe(include='all'))
+
+# Distribuição do target
+plt.figure(figsize=(6,4))
+df[target].value_counts().plot(kind='bar', color='skyblue')
+plt.title('Distribuição das Classes (Alignment)')
+plt.xlabel('Classe')
+plt.ylabel('Contagem')
+plt.tight_layout()
+plt.savefig(os.path.join(exploratory_dir, "distribuicao_classes.png"))
+plt.close()
+
+# Histogramas das features numéricas
+df[['Strength', 'Speed', 'Intelligence', 'Combat Skill', 'Power Score', 'Popularity Score']].hist(
+    figsize=(12,8), bins=15, color='orange')
+plt.tight_layout()
+plt.savefig(os.path.join(exploratory_dir, "histogramas_features.png"))
+plt.close()
+print("Visualizações e análise exploratória salvas em:", exploratory_dir)
 
 # Encode categóricas
-df = pd.get_dummies(df, columns=['Universe', 'Weapon'], drop_first=True)
+df_encoded = pd.get_dummies(df, columns=['Universe', 'Weapon'], drop_first=True)
+print("Colunas após o encode:\n", df_encoded.head())
 
 # Encode do target
 le = LabelEncoder()
-df[target] = le.fit_transform(df[target])
+df_encoded[target] = le.fit_transform(df_encoded[target])
 
-X = df.drop(columns=[target])
-y = df[target]
+X = df_encoded.drop(columns=[target])
+X = X.select_dtypes(include=[np.number])
+y = df_encoded[target]
 
 # Treino/teste
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
@@ -40,7 +65,7 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# Modelo
+# Modelo com aprendizado de máquina
 model = RandomForestClassifier(random_state=42)
 model.fit(X_train_scaled, y_train)
 
